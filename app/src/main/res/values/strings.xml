@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Sahayak</string>
+    <string name="blind">Blind</string>
+    <string name="volunteers">Volunteers</string>
+    <string name="help">I need visual assistance</string>
+    <string name="helper">I had like to Volunteer</string>
+    <string name="quote">Join a global support
+        community.See the world
+        together.</string>
+    <string name="sahayak">Sahayak</string>
+    <string name="quote_help">Loresm klndoib ckabouca
+    s krvgukn  vklsrhvinln v
+    vrsbnhsilvnlbslvfs</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login">LOGIN</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="register">Register</string>
 </resources>
