@@ -3,7 +3,7 @@
     <string name="blind">Blind</string>
     <string name="volunteers">Volunteers</string>
     <string name="help">I need visual assistance</string>
-    <string name="helper">I had like to Volunteer</string>
+    <string name="helper">I would like to Volunteer</string>
     <string name="quote">Join a global support
         community.See the world
         together.</string>
@@ -16,4 +16,8 @@
     <string name="login">LOGIN</string>
     <string name="forget_password">Forget Password?</string>
     <string name="register">Register</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="google_login">Google Login</string>
+
+    <string name="web_client_id">757457065095-tu9nm20ug5lb8c3eahqj58a9ah4pn30u.apps.googleusercontent.com</string>
 </resources>

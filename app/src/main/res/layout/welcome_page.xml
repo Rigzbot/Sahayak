@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
-        <TextView
+    <TextView
         android:id="@+id/volunteers"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
