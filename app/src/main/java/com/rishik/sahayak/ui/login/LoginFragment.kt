@@ -1,12 +1,15 @@
-package com.rishik.sahayak.ui
+package com.rishik.sahayak.ui.login
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -17,28 +20,43 @@ import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.rishik.sahayak.R
+import com.rishik.sahayak.databinding.FragmentLoginBinding
+import com.rishik.sahayak.ui.MainActivity
 import com.rishik.sahayak.util.SavedPreference
 
-class LoginActivity: AppCompatActivity() {
+class LoginFragment: Fragment() {
+    val args: LoginFragmentArgs by navArgs()
+
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
 
-        FirebaseApp.initializeApp(this)
+        FirebaseApp.initializeApp(requireContext())
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.web_client_id))
             .requestEmail()
             .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
 
         firebaseAuth = FirebaseAuth.getInstance()
 
-        val signInButton: CardView = findViewById(R.id.signIn)
-        signInButton.setOnClickListener {
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.signIn.setOnClickListener {
             signInGoogle()
         }
     }
@@ -64,7 +82,7 @@ class LoginActivity: AppCompatActivity() {
                 updateUI(account)
             }
         } catch (e: ApiException){
-            Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show()
+            Toast.makeText(context,e.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -72,23 +90,13 @@ class LoginActivity: AppCompatActivity() {
         val credential= GoogleAuthProvider.getCredential(account.idToken,null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {task->
             if(task.isSuccessful) {
-                SavedPreference.setEmail(this,account.email!!.toString())
-                SavedPreference.setUsername(this,account.displayName!!.toString())
-                val intent = Intent(this, MainActivity::class.java)
+                SavedPreference.setEmail(requireContext(),account.email!!.toString())
+                SavedPreference.setUsername(requireContext(),account.displayName!!.toString())
+                val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
-                finish()
             } else {
-                Toast.makeText(this, "Login Failed, Please try again!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Login Failed, Please try again!", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-        if(GoogleSignIn.getLastSignedInAccount(this) != null){
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
-    }
 }
-
