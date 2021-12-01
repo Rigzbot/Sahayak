@@ -20,4 +20,5 @@
     <string name="google_login">Google Login</string>
 
     <string name="web_client_id">757457065095-tu9nm20ug5lb8c3eahqj58a9ah4pn30u.apps.googleusercontent.com</string>
+    <string name="logout">Logout</string>
 </resources>
