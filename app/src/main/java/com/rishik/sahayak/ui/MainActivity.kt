@@ -8,5 +8,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val extras = intent.extras
+        var userType: String? = null
+        if (extras != null) {
+            userType = extras.getString("userType")
+        }
     }
 }

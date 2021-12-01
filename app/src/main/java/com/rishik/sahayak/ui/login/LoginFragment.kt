@@ -25,7 +25,7 @@ import com.rishik.sahayak.ui.MainActivity
 import com.rishik.sahayak.util.SavedPreference
 
 class LoginFragment: Fragment() {
-    val args: LoginFragmentArgs by navArgs()
+    private val args: LoginFragmentArgs by navArgs()
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
@@ -93,6 +93,7 @@ class LoginFragment: Fragment() {
                 SavedPreference.setEmail(requireContext(),account.email!!.toString())
                 SavedPreference.setUsername(requireContext(),account.displayName!!.toString())
                 val intent = Intent(context, MainActivity::class.java)
+                intent.putExtra("userType", args.userType)
                 startActivity(intent)
             } else {
                 Toast.makeText(context, "Login Failed, Please try again!", Toast.LENGTH_SHORT).show()
