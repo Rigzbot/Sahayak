@@ -92,6 +92,7 @@ class LoginFragment: Fragment() {
             if(task.isSuccessful) {
                 SavedPreference.setEmail(requireContext(),account.email!!.toString())
                 SavedPreference.setUsername(requireContext(),account.displayName!!.toString())
+                SavedPreference.setId(requireContext(), account.id!!.toString())
                 val intent = Intent(context, MainActivity::class.java)
                 intent.putExtra("userType", args.userType)
                 startActivity(intent)
