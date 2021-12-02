@@ -18,9 +18,14 @@
         <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/activity_login.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/activity_main.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/blind_main.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/fragment_blind.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/fragment_home.xml" value="0.22083333333333333" />
         <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/fragment_login.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/fragment_volunteer.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/fragment_welcome.xml" value="0.264" />
+        <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/nav_header.xml" value="0.4" />
         <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/layout/volunteer_main.xml" value="0.22083333333333333" />
+        <entry key="..\:/Users/user/Desktop/Kotlin/Projects/Shayak/app/src/main/res/menu/nav_menu.xml" value="0.536" />
       </map>
     </option>
   </component>
