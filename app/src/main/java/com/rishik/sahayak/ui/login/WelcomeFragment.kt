@@ -30,10 +30,10 @@ class WelcomeFragment: Fragment() {
 
     private fun setupViews() {
         binding.blindButton.setOnClickListener {
-            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToLoginFragment("Blind"))
+            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToLoginFragment("blind"))
         }
         binding.volunteerButton.setOnClickListener {
-            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToLoginFragment("Volunteer"))
+            findNavController().navigate(WelcomeFragmentDirections.actionWelcomeFragmentToLoginFragment("volunteer"))
         }
     }
 

@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
             val email = SavedPreference.getEmail(this)
             val id = SavedPreference.getId(this)
 
-            val user = User(email!!, name!!, userType!!)
+            val user = User(email!!, name!!)
 
-            database.child(id!!).setValue(user).addOnFailureListener {
+            database.child(userType!!).child(id!!).setValue(user).addOnFailureListener {
                 Toast.makeText(this, "Login Failed, please try again!", Toast.LENGTH_SHORT).show()
             }
         }
