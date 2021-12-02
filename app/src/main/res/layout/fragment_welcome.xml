@@ -106,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_large"
                 android:backgroundTint="@color/black"
+                android:textColor="@color/white"
                 android:fontFamily="@font/roboto_bold_italic"
                 android:text="@string/help"
                 app:cornerRadius="@dimen/round_btn" />
@@ -114,6 +115,7 @@
                 android:id="@+id/volunteer_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:layout_marginTop="@dimen/margin_small"
                 android:backgroundTint="@color/black"
                 android:fontFamily="@font/roboto_bold_italic"
