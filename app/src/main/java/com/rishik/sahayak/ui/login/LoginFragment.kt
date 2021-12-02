@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.rishik.sahayak.R
 import com.rishik.sahayak.databinding.FragmentLoginBinding
-import com.rishik.sahayak.ui.MainActivity
+import com.rishik.sahayak.ui.main.MainActivity
 import com.rishik.sahayak.util.SavedPreference
 
 class LoginFragment: Fragment() {

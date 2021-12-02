@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.rishik.sahayak.databinding.ActivityLoginBinding
-import com.rishik.sahayak.ui.MainActivity
+import com.rishik.sahayak.ui.main.MainActivity
 
 class LoginActivity: AppCompatActivity() {
 

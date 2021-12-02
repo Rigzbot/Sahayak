@@ -12,7 +12,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.rishik.sahayak.R
 import com.rishik.sahayak.databinding.FragmentHomeBinding
-import com.rishik.sahayak.databinding.FragmentLoginBinding
 import com.rishik.sahayak.ui.login.LoginActivity
 
 class HomeFragment: Fragment() {
