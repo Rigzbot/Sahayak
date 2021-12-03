@@ -1,6 +1,5 @@
 package com.rishik.sahayak.ui.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.rishik.sahayak.R
 import com.rishik.sahayak.databinding.FragmentHomeBinding
-import com.rishik.sahayak.ui.login.LoginActivity
+import com.rishik.sahayak.util.SavedPreference
 
 class HomeFragment: Fragment() {
 
@@ -47,10 +46,14 @@ class HomeFragment: Fragment() {
     }
 
     private fun setupViews() {
-        binding.logout.setOnClickListener {
-            mGoogleSignInClient.signOut().addOnCompleteListener {
-                val intent= Intent(requireContext(), LoginActivity::class.java)
-                startActivity(intent)
+        if(SavedPreference.getUserType(requireContext()) == "blind"){
+            binding.helpCall.visibility = View.VISIBLE
+        } else {
+            binding.apply {
+                cv1.visibility = View.VISIBLE
+                cv2.visibility = View.VISIBLE
+                cv3.visibility = View.VISIBLE
+                button.visibility = View.VISIBLE
             }
         }
     }
