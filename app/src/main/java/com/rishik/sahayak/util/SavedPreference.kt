@@ -7,6 +7,8 @@ import androidx.preference.PreferenceManager
 private const val EMAIL = "email"
 private const val USERNAME = "username"
 private const val USERID = "userId"
+private const val USERTYPE = "userType"
+
 
 object SavedPreference {
     private fun getSharedPreference(ctx: Context?): SharedPreferences? {
@@ -54,4 +56,16 @@ object SavedPreference {
     fun getId(context: Context) = getSharedPreference(
         context
     )?.getString(USERID, "")
+
+    fun setUserType(context: Context, userType: String) {
+        editor(
+            context,
+            USERTYPE,
+            userType
+        )
+    }
+
+    fun getUserType(context: Context) = getSharedPreference(
+        context
+    )?.getString(USERTYPE, "")
 }

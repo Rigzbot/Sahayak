@@ -19,8 +19,11 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.rishik.sahayak.R
 import com.rishik.sahayak.databinding.FragmentLoginBinding
+import com.rishik.sahayak.domain.User
 import com.rishik.sahayak.ui.main.MainActivity
 import com.rishik.sahayak.util.SavedPreference
 
@@ -32,6 +35,7 @@ class LoginFragment: Fragment() {
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var database: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,15 +94,31 @@ class LoginFragment: Fragment() {
         val credential= GoogleAuthProvider.getCredential(account.idToken,null)
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {task->
             if(task.isSuccessful) {
-                SavedPreference.setEmail(requireContext(),account.email!!.toString())
-                SavedPreference.setUsername(requireContext(),account.displayName!!.toString())
-                SavedPreference.setId(requireContext(), account.id!!.toString())
+
+                savePreferences(account)
+                updateDatabase(account)
                 val intent = Intent(context, MainActivity::class.java)
-                intent.putExtra("userType", args.userType)
                 startActivity(intent)
             } else {
                 Toast.makeText(context, "Login Failed, Please try again!", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun savePreferences(account: GoogleSignInAccount) {
+        SavedPreference.setEmail(requireContext(),account.email!!.toString())
+        SavedPreference.setUsername(requireContext(),account.displayName!!.toString())
+        SavedPreference.setId(requireContext(), account.id!!.toString())
+        SavedPreference.setUserType(requireContext(), args.userType)
+    }
+
+    private fun updateDatabase(account: GoogleSignInAccount) {
+        database = FirebaseDatabase.getInstance("https://sahayak-ad1ed-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users")
+
+        val user = User(account.email!!, account.displayName!!)
+
+        database.child(args.userType).child(account.id!!).setValue(user).addOnFailureListener {
+            Toast.makeText(requireContext(), "Login Failed, please try again!", Toast.LENGTH_SHORT).show()
         }
     }
 }

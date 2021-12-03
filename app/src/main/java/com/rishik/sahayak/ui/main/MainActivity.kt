@@ -13,7 +13,6 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var database: DatabaseReference
     private lateinit var binding: ActivityMainBinding
 
     private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
@@ -26,22 +25,6 @@ class MainActivity : AppCompatActivity() {
             askPermissions()
         }
 
-        val extras = intent.extras
-        val userType: String?
-        if (extras != null) {
-            userType = extras.getString("userType")
-            database = FirebaseDatabase.getInstance("https://sahayak-ad1ed-default-rtdb.asia-southeast1.firebasedatabase.app/").getReference("users")
-
-            val name = SavedPreference.getUsername(this)
-            val email = SavedPreference.getEmail(this)
-            val id = SavedPreference.getId(this)
-
-            val user = User(email!!, name!!)
-
-            database.child(userType!!).child(id!!).setValue(user).addOnFailureListener {
-                Toast.makeText(this, "Login Failed, please try again!", Toast.LENGTH_SHORT).show()
-            }
-        }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
