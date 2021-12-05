@@ -43,6 +43,7 @@
                 <ImageView
                     android:id="@+id/imageView_volunteer"
                     android:layout_width="120dp"
+                    android:importantForAccessibility="no"
                     android:layout_height="120dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_small"
@@ -59,7 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
-                    android:text="429853"
+                    tools:text="429853"
                     android:textColor="@color/black"
                     android:textSize="@dimen/count_size" />
 
@@ -67,7 +68,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="80dp"
-                    android:text="425554"
+                    tools:text="425554"
                     android:textColor="@color/black"
                     android:textSize="@dimen/count_size" />
             </LinearLayout>
@@ -120,7 +121,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_large"
                     android:fontFamily="@font/roboto_bold_italic"
-                    android:text="User name"
+                    tools:text="User name"
                     android:textColor="@color/black"
                     android:textSize="@dimen/count_size" />
 
@@ -130,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:text="English"
+                    tools:text="English"
                     android:textSize="@dimen/text_size" />
 
             </LinearLayout>

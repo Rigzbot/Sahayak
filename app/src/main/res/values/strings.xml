@@ -1,42 +1,30 @@
 <resources>
     <string name="app_name">Sahayak</string>
+    <string name="web_client_id">757457065095-tu9nm20ug5lb8c3eahqj58a9ah4pn30u.apps.googleusercontent.com</string>
+
+    <!--Login Activity-->
     <string name="blind">Blind</string>
     <string name="volunteers">Volunteers</string>
     <string name="help">I need visual assistance</string>
     <string name="helper">I would like to Volunteer</string>
-    <string name="quote">Join a global support
-        community.See the world
-        together.</string>
-    <string name="sahayak">Sahayak</string>
-    <string name="quote_help">Loresm klndoib ckabouca
-    s krvgukn  vklsrhvinln v
-    vrsbnhsilvnlbslvfs</string>
-    <string name="password">Password</string>
-    <string name="email">Email</string>
-    <string name="login">LOGIN</string>
-    <string name="forget_password">Forget Password?</string>
-    <string name="register">Register</string>
+    <string name="quote">Join a global support community.See the world together</string>
+
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="google_login">Google Login</string>
 
-    <string name="web_client_id">757457065095-tu9nm20ug5lb8c3eahqj58a9ah4pn30u.apps.googleusercontent.com</string>
-    <string name="logout">Logout</string>
-    <string name="who_do_you_want_to_call">Who do you want to call?</string>
-    <string name="call">call</string>
-
-    <string name="ask_help">Call first
-    available
-    volunteer.</string>
-    <string name="message">You will receive a notification when someone needs your help.</string>
+    <!--Main Activity-->
+    <string name="ask_help">Call first available volunteer</string>
+    <string name="message">You will receive a notification when someone needs your help</string>
     <string name="learn_how_to_answer_call">Learn how to answer a call</string>
-    <string name="profile">Profile</string>
-    <string name="about_us">About Us</string>
-    <string name="contact_usc">Contact Us</string>
 
+    <!--Navigation Drawer-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="about_us">About Us</string>
+    <string name="contact_us">Contact Us</string>
 </resources>
