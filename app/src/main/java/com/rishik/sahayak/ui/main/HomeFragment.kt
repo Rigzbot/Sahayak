@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.rishik.sahayak.databinding.FragmentHomeBinding
 import com.rishik.sahayak.util.SavedPreference
+import io.flutter.embedding.android.FlutterActivity;
 
 class HomeFragment: Fragment() {
 
@@ -40,12 +41,14 @@ class HomeFragment: Fragment() {
                 button.visibility = View.VISIBLE
             }
         }
-//        binding.button.setOnClickListener {
-//            requireActivity().supportFragmentManager.beginTransaction()
-//                .replace(R.id.container, ApplyFragment())
-//                .addToBackStack(null)
-//                .commit()
-//        }
+
+        binding.button.setOnClickListener {
+//             Type mismatch. Needed context but given homefragment
+//             So we wrapped it with view.context then extension suggest to use null safety
+            startActivity(
+                view?.let { it1 -> FlutterActivity.createDefaultIntent(it1.context) }
+            )
+        }
     }
 
     override fun onDestroyView() {
