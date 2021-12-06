@@ -1,130 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context="ui.login.WelcomeFragment">
 
-    <View
-        android:id="@+id/view"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.rishik.sahayak.viewModel.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:background="@color/teal_200"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/blind_people"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_large"
-        android:gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:textSize="@dimen/count_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="933" />
-
-    <TextView
-        android:id="@+id/blind"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/blind"
-        android:textColor="@color/grey"
-        android:textSize="@dimen/text_size_small"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/volunteers"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blind_people" />
-
-    <TextView
-        android:id="@+id/volunteers_people"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_large"
-        android:gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:textSize="@dimen/count_size"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="31946" />
-
-    <TextView
-        android:id="@+id/volunteers"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/volunteers"
-        android:textColor="@color/grey"
-        android:textSize="@dimen/text_size_small"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/volunteers_people"
-        app:layout_constraintTop_toBottomOf="@+id/volunteers_people" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView2"
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginHorizontal="30dp"
-        android:background="#d3d3d3"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="30dp"
-        android:layout_marginTop="@dimen/margin_extra"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="30dp">
-
-        <LinearLayout
+        <View
+            android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_extra"
-            android:orientation="vertical">
+            android:layout_height="450dp"
+            android:background="@color/teal_200"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/logo"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/blind_people"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.blindUsers.toString()}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/count_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="933" />
 
+        <TextView
+            android:id="@+id/blind"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/blind"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/volunteers"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/blind_people" />
 
-            <TextView
-                android:id="@+id/quote"
+        <TextView
+            android:id="@+id/volunteers_people"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.volunteers.toString()}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/count_size"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="31946" />
+
+        <TextView
+            android:id="@+id/volunteers"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/volunteers"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/text_size_small"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/volunteers_people"
+            app:layout_constraintTop_toBottomOf="@+id/volunteers_people" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="@dimen/margin_extra"
+            android:background="#d3d3d3"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="30dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_large"
-                android:fontFamily="@font/roboto_italic"
-                android:gravity="center"
-                android:text="@string/quote"
-                android:textSize="25sp" />
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_extra"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/blind_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_large"
-                android:backgroundTint="@color/black"
-                android:textColor="@color/white"
-                android:fontFamily="@font/roboto_bold_italic"
-                android:text="@string/help"
-                app:cornerRadius="@dimen/round_btn" />
-
-            <Button
-                android:id="@+id/volunteer_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_marginTop="@dimen/margin_small"
-                android:backgroundTint="@color/black"
-                android:fontFamily="@font/roboto_bold_italic"
-                android:text="@string/helper"
-                app:cornerRadius="@dimen/round_btn" />
+                <ImageView
+                    android:id="@+id/logo"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    tools:srcCompat="@tools:sample/avatars" />
 
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/quote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:fontFamily="@font/roboto_italic"
+                    android:gravity="center"
+                    android:text="@string/quote"
+                    android:textSize="25sp" />
 
-    </androidx.cardview.widget.CardView>
+                <Button
+                    android:id="@+id/blind_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_large"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/roboto_bold_italic"
+                    android:text="@string/help"
+                    android:onClick="@{() -> viewModel.updateNavigation(1)}"
+                    android:textColor="@color/white"
+                    app:cornerRadius="@dimen/round_btn" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/volunteer_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/roboto_bold_italic"
+                    android:onClick="@{() -> viewModel.updateNavigation(2)}"
+                    android:text="@string/helper"
+                    android:textColor="@color/white"
+                    app:cornerRadius="@dimen/round_btn" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
