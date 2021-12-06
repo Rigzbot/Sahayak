@@ -40,6 +40,12 @@ class HomeFragment: Fragment() {
                 button.visibility = View.VISIBLE
             }
         }
+//        binding.button.setOnClickListener {
+//            requireActivity().supportFragmentManager.beginTransaction()
+//                .replace(R.id.container, ApplyFragment())
+//                .addToBackStack(null)
+//                .commit()
+//        }
     }
 
     override fun onDestroyView() {

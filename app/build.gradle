@@ -25,6 +25,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        profile {
+            initWith debug
+        }
     }
     buildFeatures {
         dataBinding true
@@ -39,6 +42,10 @@ android {
     }
 }
 
+String storageUrl = System.env.FLUTTER_STORAGE_BASE_URL ?: "https://storage.googleapis.com"
+
+
+
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -51,6 +58,10 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation "androidx.preference:preference-ktx:1.1.1"
+    debugImplementation 'com.example.videocall:flutter_debug:1.0'
+    profileImplementation 'com.example.videocall:flutter_profile:1.0'
+    releaseImplementation 'com.example.videocall:flutter_release:1.0'
+
 
 
     //firebase dependencies
@@ -97,7 +108,7 @@ dependencies {
     //liveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
-    //by viewmodels
+    //by view-models
     implementation "androidx.fragment:fragment-ktx:1.2.5"
 
     // navigation dependencies
@@ -110,3 +121,4 @@ dependencies {
     //Circular image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
+
