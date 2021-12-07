@@ -34,4 +34,8 @@
 
     <!--Email Intent-->
     <string name="email_address">Rishikgupta8@gmail.com</string>
+
+    <!--Alert Dialog-->
+    <string name="alert_title">Logout</string>
+    <string name="alert_message">Are you sure, you would like to logout?</string>
 </resources>

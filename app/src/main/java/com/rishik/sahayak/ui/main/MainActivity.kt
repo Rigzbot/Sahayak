@@ -1,10 +1,13 @@
 package com.rishik.sahayak.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.rishik.sahayak.databinding.ActivityMainBinding
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
+import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -12,14 +15,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationView
-import com.rishik.sahayak.R
-import android.content.Intent
-import android.net.Uri
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.auth.FirebaseAuth
+import com.google.android.material.navigation.NavigationView
+import com.rishik.sahayak.R
+import com.rishik.sahayak.databinding.ActivityMainBinding
 import com.rishik.sahayak.databinding.NavHeaderNavBinding
 import com.rishik.sahayak.ui.login.LoginActivity
 import com.rishik.sahayak.util.SavedPreference
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if(!isPermissionGranted()) {
+        if (!isPermissionGranted()) {
             askPermissions()
         }
 
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.web_client_id))
             .requestEmail()
             .build()
-        mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -64,12 +65,14 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         setupViews()
+        setupNavViews()
     }
 
     private fun setupViews() {
         binding.contactUsButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_SENDTO)
-            intent.data = Uri.parse("mailto:" + getString(R.string.email_address)) // only email apps should handle this
+            intent.data =
+                Uri.parse("mailto:" + getString(R.string.email_address)) // only email apps should handle this
             startActivity(intent)
         }
         binding.shareButton.setOnClickListener {
@@ -83,12 +86,20 @@ class MainActivity : AppCompatActivity() {
             startActivity(sendIntent)
         }
         binding.logoutButton.setOnClickListener {
-            mGoogleSignInClient.signOut().addOnCompleteListener {
-                val intent= Intent(this, LoginActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
+            AlertDialog.Builder(this)
+                .setTitle(getString(R.string.alert_title))
+                .setMessage(getString(R.string.alert_message))
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(
+                    "Yes"
+                ) { _, _ ->
+                    logout()
+                }
+                .setNegativeButton("Cancel", null).show()
         }
+    }
+
+    private fun setupNavViews() {
         val viewHeader = binding.navView.getHeaderView(0)
         val navBinding: NavHeaderNavBinding = NavHeaderNavBinding.bind(viewHeader)
         navBinding.userName.text = SavedPreference.getUsername(this)
@@ -100,13 +111,21 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    private fun logout() {
+        mGoogleSignInClient.signOut().addOnCompleteListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
     private fun askPermissions() {
         ActivityCompat.requestPermissions(this, permissions, requestCode)
     }
 
     private fun isPermissionGranted(): Boolean {
         permissions.forEach {
-            if(ActivityCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED){
+            if (ActivityCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED) {
                 return false
             }
         }
