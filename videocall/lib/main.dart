@@ -47,10 +47,14 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
   }
 
+  @override
+  void didChangeDependencies() {
+    _openCamera();
+    super.didChangeDependencies();
+  }
+
   Future<void> _openCamera() async {
-    setState(() async {
-      await signaling.openUserMedia(_localRenderer, _remoteRenderer);
-    });
+    await signaling.openUserMedia(_localRenderer, _remoteRenderer);
   }
 
   @override
@@ -63,90 +67,126 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          // fit: StackFit.expand,
-          children: [
-            Container(
-              height: 200,
-              width: 200,
-              color: Colors.black,
-              child: RTCVideoView(
-                _remoteRenderer,
-                mirror: true,
-              ),
-            ),
-            Container(
-              height: 200,
-              width: 200,
-              child: RTCVideoView(
-                _localRenderer,
-                mirror: true,
-              ),
-            )
-            // ElevatedButton(
-            //   onPressed: () {
-            //     signaling.openUserMedia(_localRenderer, _remoteRenderer);
-            //   },
-            //   child: Text("Open camera & microphone"),
-            // ),
-            //
-            // ElevatedButton(
-            //   onPressed: () async {
-            //     roomId = await signaling.createRoom(_remoteRenderer);
-            //     textEditingController.text = roomId!;
-            //     setState(() {});
-            //   },
-            //   child: Text("Create room"),
-            // ),
-            //
-            // ElevatedButton(
-            //   onPressed: () {
-            //     // Add roomId
-            //     signaling.joinRoom(
-            //       textEditingController.text,
-            //       _remoteRenderer,
-            //     );
-            //   },
-            //   child: Text("Join room"),
-            // ),
-            //
-            // ElevatedButton(
-            //   onPressed: () {
-            //     signaling.hangUp(_localRenderer);
-            //   },
-            //   child: Text("Hangup"),
-            // ),
-            //
-            // Expanded(
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(8.0),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.center,
-            //       children: [
-            //         Expanded(child: RTCVideoView(_localRenderer, mirror: true)),
-            //         Expanded(child: RTCVideoView(_remoteRenderer)),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Text("Join the following Room: "),
-            //       Flexible(
-            //         child: TextFormField(
-            //           controller: textEditingController,
-            //         ),
-            //       )
-            //     ],
-            //   ),
-            // ),
-          ],
-        ),
-      ),
+      extendBodyBehindAppBar: true,
+      extendBody: true,
+      body: FutureBuilder(
+          future: _openCamera(),
+          builder: (context, data) {
+            return Stack(
+              children: [
+                Container(
+                  height: double.infinity,
+                  color: Colors.black,
+                  child: RTCVideoView(
+                    _remoteRenderer,
+                    mirror: true,
+                  ),
+                ),
+                Positioned(
+                  top: 40,
+                  left: -40,
+                  child: Container(
+                    height: 150,
+                    width: 200,
+                    child: RTCVideoView(
+                      _localRenderer,
+                      mirror: true,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 80,
+                  left: MediaQuery.of(context).size.width / 2 - 100,
+                  child: InkWell(
+                    onTap: () {},
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 32,
+                      child: Icon(
+                        Icons.phone_disabled,
+                        size: 26,
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 80,
+                  right: MediaQuery.of(context).size.width / 2 - 100,
+                  child: InkWell(
+                    onTap: () {},
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 32,
+                      child: Icon(
+                        Icons.flashlight_off,
+                        size: 26,
+                      ),
+                    ),
+                  ),
+                ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     signaling.openUserMedia(_localRenderer, _remoteRenderer);
+                //   },
+                //   child: Text("Open camera & microphone"),
+                // ),
+                //
+                // ElevatedButton(
+                //   onPressed: () async {
+                //     roomId = await signaling.createRoom(_remoteRenderer);
+                //     textEditingController.text = roomId!;
+                //     setState(() {});
+                //   },
+                //   child: Text("Create room"),
+                // ),
+                //
+                // ElevatedButton(
+                //   onPressed: () {
+                //     // Add roomId
+                //     signaling.joinRoom(
+                //       textEditingController.text,
+                //       _remoteRenderer,
+                //     );
+                //   },
+                //   child: Text("Join room"),
+                // ),
+                //
+                // ElevatedButton(
+                //   onPressed: () {
+                //     signaling.hangUp(_localRenderer);
+                //   },
+                //   child: Text("Hangup"),
+                // ),
+                //
+                // Expanded(
+                //   child: Padding(
+                //     padding: const EdgeInsets.all(8.0),
+                //     child: Row(
+                //       mainAxisAlignment: MainAxisAlignment.center,
+                //       children: [
+                //         Expanded(child: RTCVideoView(_localRenderer, mirror: true)),
+                //         Expanded(child: RTCVideoView(_remoteRenderer)),
+                //       ],
+                //     ),
+                //   ),
+                // ),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       Text("Join the following Room: "),
+                //       Flexible(
+                //         child: TextFormField(
+                //           controller: textEditingController,
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // ),
+              ],
+            );
+          }),
     );
   }
 }
