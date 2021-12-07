@@ -14,6 +14,16 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.rishik.sahayak.R
+import android.content.Intent
+import android.net.Uri
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.rishik.sahayak.databinding.NavHeaderNavBinding
+import com.rishik.sahayak.ui.login.LoginActivity
+import com.rishik.sahayak.util.SavedPreference
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
     private val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO)
     private val requestCode = 1
+
+    lateinit var mGoogleSignInClient: GoogleSignInClient
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +46,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarNav.toolbar)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -49,7 +67,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViews() {
-        //TODO
+        binding.contactUsButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SENDTO)
+            intent.data = Uri.parse("mailto:" + getString(R.string.email_address)) // only email apps should handle this
+            startActivity(intent)
+        }
+        binding.shareButton.setOnClickListener {
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Hey check out this amazing app I Found at: https://github.com/Rigzbot/Sahayak"
+            )
+            sendIntent.type = "text/plain"
+            startActivity(sendIntent)
+        }
+        binding.logoutButton.setOnClickListener {
+            mGoogleSignInClient.signOut().addOnCompleteListener {
+                val intent= Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+        val viewHeader = binding.navView.getHeaderView(0)
+        val navBinding: NavHeaderNavBinding = NavHeaderNavBinding.bind(viewHeader)
+        navBinding.userName.text = SavedPreference.getUsername(this)
+        navBinding.userEmail.text = SavedPreference.getEmail(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
