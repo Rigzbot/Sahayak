@@ -45,6 +45,11 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        setupViews()
+    }
+
+    private fun setupViews() {
+        //TODO
     }
 
     override fun onSupportNavigateUp(): Boolean {

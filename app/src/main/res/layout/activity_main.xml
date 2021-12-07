@@ -20,29 +20,99 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_nav"
-        app:menu="@menu/nav_menu" >
+        app:headerLayout="@layout/nav_header_nav">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textV"
+                android:id="@+id/info_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="192dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/about_us"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/about_us_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_large"
+                android:layout_marginVertical="@dimen/margin_small"
+                android:fontFamily="@font/roboto"
                 android:text="@string/about_content"
-                android:layout_marginBottom="190dp"
                 android:textColor="@color/black"
-                android:fontFamily="@font/roboto_bold_italic"
-                app:layout_constraintBottom_toTopOf="@+id/btn"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/info_heading" />
+
+            <View
+                android:id="@+id/hr1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="@dimen/margin_large"
+                android:background="#c0c0c0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/about_us_tv" />
+
+            <TextView
+                android:id="@+id/contact_us_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_large"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:text="@string/contact_us"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_baseline_contacts_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hr1" />
+
+            <View
+                android:id="@+id/hr2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="@dimen/margin_large"
+                android:background="#c0c0c0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/contact_us_button" />
+
+            <TextView
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_large"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/roboto"
+                android:gravity="center"
+                android:text="@string/share"
+                android:textStyle="bold"
+                app:drawableLeftCompat="@drawable/ic_baseline_share_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/hr2" />
+
+            <TextView
+                android:id="@+id/share_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_large"
+                android:layout_marginVertical="@dimen/margin_small"
+                android:fontFamily="@font/roboto"
+                android:text="@string/share_content"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/share_button" />
 
             <Button
                 android:id="@+id/btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_large"
                 android:backgroundTint="@color/black"
                 android:text="@string/logout"
                 android:textColor="@color/white"
